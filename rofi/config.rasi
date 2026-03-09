@@ -1,0 +1,88 @@
+configuration{
+  display-drun: "Applications:";
+  display-windows: "Windows:";
+  drun-display-format: "{icon}  {name}";
+  font: "Adwaita Mono 12";
+  show-icons: true;
+  icon-theme: "Bloom";
+  modi: "drun,window";
+}
+
+@theme "/dev/null"
+
+// Theme             foreground  background  broderbg
+//
+// Tokyonight        #a9b1d6     #444b6a     #7aa2f7
+// Kanagawa          #dcd7ba     #1f1f28     #c8c093
+// Catppuccin        #ccd0da     #4c4f69     #ca9ee6
+// Ethereal          #f7dc9c     #060b1e     #ffcead
+// #24345a	(36,52,90)
+// #aeb8e6	(174,184,230)
+// #f8e7ea	(248,231,234)
+// #fbf9f7	(251,249,247)
+// #d6cbea	(214,203,234)
+*{
+  bg: #24345a; // bg of the box
+  bg-head: #aeb8e6; // bg of the heading always use bright colors.
+
+  fg-head: #24345a; // fg in heading always use dark colors.
+  fg:#89ecda; // fg of the selected element.
+  fg-alt: #d6cbea; // fg of the non selected element.
+
+  background-color: @bg;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 30%;
+}
+
+element {
+  padding: 12;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+element-icon {
+  size: 30;
+}
+
+entry {
+  background-color: @bg-head;
+  padding: 12;
+  text-color: @fg-head;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: @bg-head;
+  enabled: true;
+  padding: 12 0 0 12;
+  text-color: @fg-head;
+}
