@@ -1,0 +1,35 @@
+set previewer ~/.config/lf/previewer
+
+set shell bash
+set hidden true
+set icons true
+set ignorecase true
+
+cmd touch % [ -e $1 ] && printf "file exits" || touch $1
+
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+
+cmd open &{{
+	case $(file --mime-type -Lb $f) in
+		text/*) lf -remote "send $id \$nvim \$fx";;
+		*) xdg-open "$f"
+	esac
+}}
+
+cmd on-select &{{
+    lf -remote "send $id redraw"
+}}
+
+cmd interactive_delete $
+{{
+  set -f
+  echo "$fx"
+  echo -n "delete? Y/n"
+  read ans
+  [ "$ans" = "Y" ] && rm -rf $fs
+}}
+
+mad d
+map a :push %mkdir<space>
+map r push :rename<space>
+map dd interactive_delete

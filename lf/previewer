@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Parameters: $1=path, $2=width, $3=height, $4=x, $5=y
+file=$1
+width=$2
+height=$3
+
+# Helper function to render images with chafa
+# -s specifies the terminal cell size to fit the preview area
+draw_image() {
+  chafa -f sixel -s "${width}x${height}" --animate off --polite on "$1"
+}
+
+case "$(printf "%s" "$file" | tr '[:upper:]' '[:lower:]')" in
+  # Images: Direct render
+  *.jpg|*.jpeg|*.png|*.gif|*.bmp|*.webp|*.tiff|*.svg)
+  draw_image "$file"
+  ;;
+  # Videos: Generate thumbnail then render
+  *.mp4|*.mkv|*.avi|*.mov|*.flv|*.webm)
+  thumbnail="/tmp/lf-thumb.png"
+  ffmpegthumbnailer -i "$file" -o "$thumbnail" -s 0 -q 10 2>/dev/null
+  if [ -f "$thumbnail" ]; then
+    draw_image "$thumbnail"
+    rm "$thumbnail"
+  fi
+  ;;
+# *.svg)
+#   rsvg-convert "$file" -o "$thumbnail" 2>/dev/null
+#   if [ -f "$thumbnail" ]; then
+#     draw_image "$thumbnail"
+#     rm "$thumbnail"
+#   fi
+#   ;;
+  # PDFs: Convert first page to image then render
+  *.pdf)
+  thumbnail="/tmp/lf-pdf.png"
+  # Requires 'pdftoppm' (poppler-utils)
+  pdftoppm -f 1 -l 1 -png "$file" > "$thumbnail" 2>/dev/null
+  if [ -f "$thumbnail" ]; then
+    draw_image "$thumbnail"
+    rm "$thumbnail"
+  fi
+  ;;
+  # Source Code: Syntax highlighting (requires 'bat')
+  *.sh|*.py|*.js|*.c|*.cpp|*.conf|*.json|*.md)
+  bat --color=always --style=plain --terminal-width="$width" "$file"
+  ;;
+  # Default: Show file info or plain text
+  *)
+  if [ "$(file -b --mime-type "$file" | cut -d/ -f1)" = "text" ]; then
+    cat "$file"
+  else
+    file -b "$file"
+  fi
+  ;;
+esac
+
