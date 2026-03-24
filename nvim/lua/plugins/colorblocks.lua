@@ -6,9 +6,7 @@ return {
       virt_text_pos = "eol",
       mode = "fg",
       section = { "S", " ", "Color: ", "H" },
-      filetypes = { "lua", "css", "toml", "sh", "cfg", "i3config", "dosini", "txt", "rasi", "conf" },
+      filetypes = { "lua", "css", "toml", "sh", "cfg", "i3config", "dosini", "txt", "rasi", "conf" "swayconfig" },
     })
   end,
 }
-
-

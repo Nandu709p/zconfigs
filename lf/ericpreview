@@ -7,5 +7,4 @@ case "$(file -Lb --mime-type -- "$1")" in
         ;;
     *)
         previewer "$1" ;;
-        ;;
 esac

@@ -43,7 +43,7 @@ case "$(printf "%s" "$file" | tr '[:upper:]' '[:lower:]')" in
   fi
   ;;
   # Source Code: Syntax highlighting (requires 'bat')
-  *.sh|*.py|*.js|*.c|*.cpp|*.conf|*.json|*.md)
+  *.sh|*.py|*.js|*.c|*.cpp|*.conf|*.json|*.md|*.jsonc)
   bat --color=always --style=plain --terminal-width="$width" "$file"
   ;;
   # Default: Show file info or plain text

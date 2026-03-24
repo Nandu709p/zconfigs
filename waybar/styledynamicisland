@@ -1,0 +1,65 @@
+/* Remove the default background of the full bar */
+window#waybar {
+    background-color: transparent;
+}
+
+/* Base style for all module groups (The "Island" look) */
+.modules-center {
+    background-color: transparent; /* Deep dark background */
+    transition: all 0.9s ease;
+}
+.modules-left {
+    background-color: transparent;
+    font-size: 17px;
+    padding-left: 15px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #cdd6f4;
+}
+
+#workspaces button.focused {
+    color: #cba6f7;
+}
+
+#workspaces button.urgent {
+    color: #f7768e;
+}
+
+/* Styling individual modules inside the islands */
+#workspaces,
+#network,
+#bluetooth,
+#pulseaudio,
+#clock,
+#battery,
+#cpu {
+    padding: 0 12px;
+    font-size: 17px;
+    color: #cdd6f4;
+}
+
+/* #network.wifi, */
+/* #network.ethernet, */
+/* #network.linked { */
+/*     color: #88c0d0; */
+/* } */
+/**/
+/* #network.disconnected { */
+/*     color: grey; */
+/* } */
+/**/
+/* #network { */
+/*     transition: color 0.3s ease-in-out; */
+/* } */
+/**/
+/* Specific workspace styling for the "Dynamic" feel */
+/**/
+/* #battery.charging { */
+/*     color: #a3be8c;  */
+/* } */
+/**/
+/* #bluetooth.connected { */
+/*     color: #81a1c1 */
+/* } */

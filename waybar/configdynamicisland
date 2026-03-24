@@ -1,0 +1,93 @@
+{
+"reload_style_on_change": true,
+    "layer": "top",
+    "position": "top",
+    "margin-top": 5,
+    "margin-bottom": 2,
+    "modules-center": ["sway/workspaces", "clock", "network", "bluetooth", "pulseaudio", "cpu", "battery"],
+    "modules-left": ["sway/window"],
+
+
+    "sway/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "default": "",
+            "focused": ""
+        },
+        "persistent-workspaces": {
+    "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "foot -e btop",
+  },
+    "network": {
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format": "{icon}",
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰀂",
+        "format-disconnected": "󰤮",
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 3,
+        "spacing": 1,
+        "on-click": "foot -e impala"
+    },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "battery": {
+        "format": "{icon}",
+        "format-discharging": "{icon}",
+        "format-charging": "{icon}",
+        "format-plugged": "",
+        "format-icons": {
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+            "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        },
+        "format-full": "󰂅",
+        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
+    },
+    "bluetooth": {
+        "format": "",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "format-no-controller": "",
+        "tooltip-format": "Devices connected: {num_connections}",
+        "on-click": "foot -e bluetui"
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "on-click": "foot -e wiremix",
+        "tooltip-format": "Playing at {volume}%",
+        "scroll-step": 5,
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        }
+    },
+    "clock": {
+        "format": "{:L%A %H:%M %p}",
+        "format-alt": "{:L%d %B %Y}",
+        "tooltip": false
+    }  
+}
